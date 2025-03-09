@@ -8,13 +8,13 @@
 
     <!-- Rolling File Appender for general logging -->
     <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/opt/apps/logs/ch-core.log</file>
+        <file>kannel.log</file>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - [%method] %msg%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- Rotate daily and when the file size exceeds 1GB -->
-            <fileNamePattern>/opt/apps/logs/ch-core.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>kannel.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxFileSize>1GB</maxFileSize>
             <!-- Keep 30 days' worth of history -->
             <maxHistory>30</maxHistory>
