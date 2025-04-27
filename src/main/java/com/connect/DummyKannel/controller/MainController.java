@@ -22,7 +22,7 @@ public class MainController {
     public ResponseEntity getRequest(@RequestParam Map<String, String> allParams)  {
         counter++;
         log.info("payload "+allParams + "count "+counter);
-        return new  ResponseEntity(HttpStatus.OK);
+        return  ResponseEntity.status(HttpStatus.OK).build() ;
     }
 
     @PostMapping("/cgi-bin/sendsms/")
