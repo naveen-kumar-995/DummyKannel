@@ -1,2 +1,3 @@
 com\connect\DummyKannel\DummyKannelApplication.class
 com\connect\DummyKannel\controller\MainController.class
+com\connect\DummyKannel\config\AppConfig.class

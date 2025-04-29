@@ -9,5 +9,4 @@ public class DummyKannelApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DummyKannelApplication.class, args);
 	}
-
 }
