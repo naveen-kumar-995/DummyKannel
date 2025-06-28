@@ -26,39 +26,13 @@ public class MainController {
     private static final Logger log = LoggerFactory.getLogger(MainController.class);
     static long counter;
 
-    private final RestTemplate restTemplate;
-
-    public MainController(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-
-    }
-
-
 
     @GetMapping("/cgi-bin/sendsms")
-    public ResponseEntity getRequest(@RequestParam Map<String, String> allParams) throws JsonProcessingException, UnsupportedEncodingException, URISyntaxException {
-        System.out.println("=== Received Kannel-style SMS ===");
-        allParams.forEach((key, value) -> System.out.println(key + " = " + value));
-        String DlrUrl = allParams.get("dlr-url");
-        String sdate = allParams.get("sdate");
-        String dn = "id:1 sub:001 dlvrd:001 submitdate:" + sdate + "donedate:" + sdate + " stat:DELIVRD err:000 Text:dlr";
-         String encodedn = URLEncoder.encode(dn , "UTF-8");
-        String replacefinal = DlrUrl.replace("%a", encodedn);
-        restcall(replacefinal);
+    public ResponseEntity getRequest(@RequestParam Map<String, String> allParams) {
+
+        log.debug(allParams.toString());
         return  ResponseEntity.status(HttpStatus.OK).build();
     }
-   public void restcall(String url)
-   {
-       try {
-           String response = restTemplate.getForObject(url, String.class);
-           log.info(response);
-       } catch (HttpClientErrorException e) {
-           if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
-               log.error( "Resource not found");
-           }
-       }
-   }
-
 
 
 
@@ -66,7 +40,6 @@ public class MainController {
     @GetMapping("/recieve")
     public ResponseEntity getRequestInternal(@RequestParam Map<String, String> allParams)
     {
-
 
         System.out.println(allParams);
         return ResponseEntity.ok("Accepted");
